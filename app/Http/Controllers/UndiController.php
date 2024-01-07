@@ -34,8 +34,16 @@ class UndiController extends Controller
 
         $pembeli = Pembeli::where('nomer_hp', $noTlp)->first();
         $hadiah = Hadiah::where('code_voucer', $voucherCode)->first();
-
+        
+        
         if ($hadiah && $pembeli) {
+            $isUndianSudahDilakukan = Pemenang::where('notlp', $noTlp)->where('hadiah', $hadiah->nama)->exists();
+
+            if ($isUndianSudahDilakukan) {
+                return redirect()
+                    ->back()
+                    ->with('gagalUndi', 'Undian untuk nomor telepon dan hadiah tersebut sudah dilakukan sebelumnya.');
+            }
             Pemenang::create([
                 'hadiah' => $hadiah->nama,
                 'notlp' => $request->phone,
@@ -48,7 +56,7 @@ class UndiController extends Controller
         } else {
             return redirect()
                 ->back()
-                ->with('gagalUndi', '.');
+                ->with('gagalUndi', 'Nomor atau voucher anda tidak beruntung.');
         }
     }
 }

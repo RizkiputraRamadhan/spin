@@ -320,9 +320,21 @@
         </div>
         <button id="undi" class="butonSpin" type="submit">Spin</button>
     </form>
+   
+
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+@if(session('gagalUndi'))
+<div>
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Gagal!',
+            text: '{{ session('gagalUndi') }}',
+        });
+    </script>
+</div>
+@endif
 <script>
     let rotationInterval;
     let undianBerhasil = {!! json_encode(session('undianBerhasil', false)) !!};
@@ -330,7 +342,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('undi').click();
         });
-    } else {
+    } else{
+       
     }
 
     function rotateFunction() {
