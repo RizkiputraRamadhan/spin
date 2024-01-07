@@ -66,7 +66,7 @@
         </div>
     </div>
 
-    <div class="container bg-white mx-auto mt-8">
+    <div class="container bg-white mx-auto ">
         @yield('content')
     </div>
 

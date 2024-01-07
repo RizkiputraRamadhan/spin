@@ -6,6 +6,8 @@ use App\Http\Controllers\HadiahController;
 use App\Http\Controllers\PembeliController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PemenangController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\authController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,9 @@ use App\Http\Controllers\PemenangController;
 
 Route::get('/', [UndiController::class, 'index']);
 Route::post('/undi', [UndiController::class, 'undi']);
+Route::get('login', [authController::class, 'login'])
+                ->name('login');
+Route::post('login', [authController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('pembeli', [PembeliController::class, 'index']);

@@ -1,12 +1,9 @@
 @extends('v_layouts.app')
 @section('title', 'Home')
 @section('content')
+<div class="p-5">
 
-<div class="font-semibold text-xl text-gray-800 leading-tight mb-4">
-    Data Pembeli
-</div>
-
-<div class="py-4">
+    <div class="py-">
     <a href="{{ url('pembeli/create') }}" class="btn btn-success my-3">Tambah Pembeli</a>
 
     <table class="min-w-full bg-white border border-gray-300">
@@ -40,6 +37,7 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 
 @endsection

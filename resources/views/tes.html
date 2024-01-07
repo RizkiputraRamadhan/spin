@@ -1,4 +1,3 @@
-@section('title', 'Home')
 <style>
     * {
         box-sizing: border-box;
@@ -272,19 +271,18 @@
             display: flex;
             margin: auto;
         }
-
         .butonSpin {
-            padding: 10px;
-            margin-top: 10px;
-            width: 80%;
-            text-align: center;
-            align-items: center;
-            margin: 10px 30px;
-            background-color: aqua;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: transform 0.2s ease;
-        }
+        padding: 10px;
+        margin-top: 10px;
+        width: 80%;
+        text-align: center;
+        align-items: center;
+        margin: 10px 30px;
+        background-color: aqua;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: transform 0.2s ease;
+    }
 
     }
 </style>
@@ -293,50 +291,39 @@
     <div id="mainbox" class="mainbox">
         <div id="box" class="box">
             <div class="box1">
-                @foreach ($topHadiah as $h)
-                    <span class="span{{ $loop->iteration }} sp"><b>{{ $h->nama }}</b></span>
-                @endforeach
+                <span class="span1 sp"><b>Iron</b></span>
+                <span class="span2 sp"><b>Joker</b></span>
+                <span class="span3 sp"><b>BatJok</b></span>
+                <span class="span4 sp"><b>Joker</b></span>
+            </div>
+            <div class="box2">
+                <span class="span1 sp"><b>Joker</b></span>
+                <span class="span2 sp"><b>Joker</b></span>
+                <span class="span3 sp"><b>Deadpool</b></span>
+                <span class="span4 sp"><b>Joker</b></span>
             </div>
 
-            <div class="box2">
-                @foreach ($bottomHadiah as $h)
-                    <span class="span{{ $loop->iteration }} sp"><b>{{ $h->nama }}</b></span>
-                @endforeach
-            </div>
         </div>
-        <button class="spin" id="plush" onclick="stopRotation()">SPIN</button>
-        <button  id="undi" onclick="rotateFunction()"></button>
+        <button class="spin" onclick="rotateFunction()">SPIN</button>
     </div>
     <br>
-    <form class="input-section" action="/undi" method="post">
-        @csrf
+    <div class="input-section">
         <img class="logo" src="https://i.ibb.co/jWfTb3c/Whats-App-Image-2024-01-06-at-14-50-55-bafac6b3.jpg"
             alt="">
         <div class="input-container">
-            <input type="text" name="phone" id="phoneNumber" required placeholder="Enter your phone number">
+            <input type="text" id="phoneNumber" required placeholder="Enter your phone number">
         </div>
         <div class="input-container">
-            <input type="text" name="voucher" id="voucherCode" required placeholder="Enter your voucher code">
+            <input type="text" id="voucherCode" required placeholder="Enter your voucher code">
         </div>
-        <button id="undi" class="butonSpin" type="submit">Spin</button>
-    </form>
+        <button onclick="rotateFunction()" class="butonSpin">Spin</button>
+    </div>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
 <script>
     let rotationInterval;
-    let undianBerhasil = {!! json_encode(session('undianBerhasil', false)) !!};
-    if (undianBerhasil) {
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('undi').click();
-        });
-    } else {
-    }
 
     function rotateFunction() {
-        let phoneNumberValue = document.getElementById('phoneNumber').value;
-        let voucherCodeValue = document.getElementById('voucherCode').value;
-
         let min = 1024;
         let max = 9999;
         let deg = Math.floor(Math.random() * (max - min)) + min;
@@ -374,15 +361,14 @@
             if (index !== -1) {
                 selectedItem = elements[index].textContent.trim();
             } else {
-                selectedItem = 'zoonkk';
+                selectedItem = 'Zoong';
             }
-            if (selectedItem === 'zoonkk' || selectedItem === '') { 
-                Swal.fire({
-                title: `Anda Mendapatkan ${selectedItem} Belum Beruntung Coba Lagi.`,
+            Swal.fire({
+                title: `Selamat Anda Mendapatkan ${selectedItem} .`,
                 width: 600,
                 padding: "3em",
                 color: "#716add",
-                background: "#fff",
+                background: "#fff url(https://i.ibb.co/LrcZRVc/352159-206ae.gif )",
                 backdrop: `
                       rgba(0,0,123,0.4)
                       url("https://i.ibb.co/LrcZRVc/352159-206ae.gif")
@@ -390,29 +376,11 @@
                       no-repeat
                     `
             });
-            }else {
-
-                Swal.fire({
-                    title: `Selamat Anda Mendapatkan ${selectedItem} .`,
-                    width: 600,
-                    padding: "3em",
-                    color: "#716add",
-                    background: "#fff url(https://i.ibb.co/LrcZRVc/352159-206ae.gif )",
-                    backdrop: `
-                          rgba(0,0,123,0.4)
-                          url("https://i.ibb.co/LrcZRVc/352159-206ae.gif")
-                          left top
-                          no-repeat
-                        `
-                });
-            }
-
 
         }, 5000);
     }
- 
+
     function stopRotation() {
         clearInterval(rotationInterval);
     }
-    
 </script>

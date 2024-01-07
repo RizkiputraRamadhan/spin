@@ -2,6 +2,7 @@
 @section('title', 'Data Pemenang')
 
 @section('content')
+<div class="p-5">
     <h2 class="text-2xl font-bold mb-4">Data Pemenang</h2>
     <div class="overflow-x-auto">
         <table class="min-w-full bg-white border border-gray-300">
@@ -35,4 +36,5 @@
             </tbody>
         </table>
     </div>
+</div>
 @endsection

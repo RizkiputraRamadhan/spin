@@ -11,11 +11,19 @@ class UndiController extends Controller
 {
     public function index()
     {
-        $hadiah = Hadiah::all();
+        $hadiah = Hadiah::inRandomOrder()
+            ->take(8)
+            ->get();
         $pembeli = Pembeli::all();
+
+        $halfCount = $hadiah->count() / 2;
+        $topHadiah = $hadiah->slice(0, $halfCount);
+        $bottomHadiah = $hadiah->slice($halfCount);
         return view('home', [
-            'hadiah' => $hadiah,
+            'topHadiah' => $topHadiah,
+            'bottomHadiah' => $bottomHadiah,
             'pembeli' => $pembeli,
+            'hadiah' => $hadiah,
         ]);
     }
 
@@ -32,9 +40,11 @@ class UndiController extends Controller
                 'hadiah' => $hadiah->nama,
                 'notlp' => $request->phone,
             ]);
+            $undianBerhasil = true;
+
             return redirect()
                 ->back()
-                ->with('selamat', $hadiah->nama);
+                ->with('undianBerhasil', $undianBerhasil);
         } else {
             return redirect()
                 ->back()

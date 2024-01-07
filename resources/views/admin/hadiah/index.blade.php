@@ -2,10 +2,7 @@
 @section('title', 'Data Hadiah')
 
 @section('content')
-    <h2 class="text-2xl font-bold mb-4">Data Hadiah</h2>
-
-    <!-- Display Hadiah data in a styled table -->
-
+<div class="p-5">
     <a href="{{ route('hadiah.create') }}" class="btn btn-success my-3">Tambah Hadiah</a>
 
     <div class="overflow-x-auto">
@@ -41,5 +38,6 @@
                 @endforeach
             </tbody>
         </table>
+    </div>
     </div>
 @endsection

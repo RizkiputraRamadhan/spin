@@ -10,7 +10,7 @@ class HadiahController extends Controller
 {
     public function index()
     {
-        $hadiahs = Hadiah::inRandomOrder()->take(6)->get();
+        $hadiahs = Hadiah::all();
         return view('admin.hadiah.index', compact('hadiahs'));
     }
 
